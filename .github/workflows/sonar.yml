@@ -14,8 +14,15 @@ jobs:
     name: Build and analyze on SonarCloud
     runs-on: ubuntu-latest
 
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_PROJECT_KEY: spring-xd
+      SONAR_ORGANIZATION: private-reasearch
+      SONAR_HOST_URL: https://sonarcloud.io
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -38,9 +45,9 @@ jobs:
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          args: >
-            -Dsonar.projectKey=你的projectKey
-            -Dsonar.organization=你的organization
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          args: |
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ env.SONAR_ORGANIZATION }}
+            -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+            -Dsonar.login=${{ env.SONAR_TOKEN }}
             -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
