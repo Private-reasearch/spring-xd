@@ -302,8 +302,8 @@ configure(javaProjects) { subproject ->
 			minHeapSize = "128m"
 			maxHeapSize = "512m"
 			// jvmArgs "-XX:MaxPermSize=512m"
-			jvmArgs "-Djava.net.preferIPv4Stack=true"
-			jvmArgs "-XX:+HeapDumpOnOutOfMemoryError"
+			// jvmArgs "-Djava.net.preferIPv4Stack=true"
+			// jvmArgs "-XX:+HeapDumpOnOutOfMemoryError"
 			// 	useful for debugging the GradleWorkerMain
 			//		jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000"
 			//		jvmArgs "-Dlog4j.debug=true"
